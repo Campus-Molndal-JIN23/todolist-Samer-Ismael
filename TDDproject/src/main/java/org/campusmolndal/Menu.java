@@ -23,15 +23,13 @@ public class Menu {
 
         if (databse.findUserByUsername(name) == null) {
             System.out.println("Hmmm I see.... new user ");
-            createUser();
+            createUser(name);
         } else {
             user = databse.findUserByUsername(name);
         }
         olName = user.getUsername();
     }
-    public void createUser (){
-        System.out.println("Rewrite your name? ");
-        String name = ScannerUtil.getTheInput().nextLine();
+    public void createUser (String name){
         System.out.println("How old are you? ");
         int age = ScannerUtil.getTheInput().nextInt();
         user = new User(name,age);
@@ -49,7 +47,8 @@ public class Menu {
         System.out.println("2. Open.");
         System.out.println("3. Delete.");
         System.out.println("4. Update.");
-        System.out.println("5. Exit");
+        System.out.println("5. Account settings.");
+        System.out.println("6. Exit");
         System.out.println("-------------------");
         int number = ScannerUtil.getTheInput().nextInt();
         return number;
@@ -59,8 +58,8 @@ public class Menu {
         System.out.println("2. Set as done.");
         System.out.println("3. Set as not done.");
         System.out.println("4. Delete.");
-        System.out.println("5. Edit.");
-        System.out.println("6. Go back.");
+        System.out.println("5. Go back.");
+        System.out.println("6. Edit.");
         System.out.println("---------------------");
         int number = ScannerUtil.getTheInput().nextInt();
         return number;
@@ -105,6 +104,27 @@ public class Menu {
             System.out.println("Done!");
         }
         if (number == 5) {
+            System.out.println("1. Delete account");
+            System.out.println("2. Change your name");
+            int choice = ScannerUtil.getTheInput().nextInt();
+            if (choice == 1) {
+                System.out.println("Are you shore you want to delete it (Y,N)");
+                String answer = ScannerUtil.getTheInput().nextLine();
+                if (answer.toLowerCase().equals("y")) {
+                    databse.deleteUser(user);
+                    System.exit(0);
+                } else {
+                    //Do nothing
+                }
+            }
+            if (choice == 2) {
+                System.out.println("Enter your new name: ");
+                String newName = ScannerUtil.getTheInput().nextLine();
+                user.setUsername(newName);
+                databse.updateUser(user,olName);
+            }
+        }
+        if (number == 6) {
             System.exit(0);
         } else {
             //do nothing, but please don't crash
