@@ -1,5 +1,6 @@
 package org.campusmolndal;
 
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -27,58 +28,65 @@ public class Databse {
     }
 
     public void createUser(User user) {
-        MongoCollection<Document> collection = database.getCollection(userCollection);
-
-        List<Document> toDoListsArray = new ArrayList<>();
-        for (ToDo toDoList : user.getToDoList()) {
-            List<Document> tasksArray = new ArrayList<>();
-            for (Task task : toDoList.getTasks()) {
-                Document taskDocument = new Document()
-                        .append("description", task.getDescription())
-                        .append("isDone", task.isDone());
-                tasksArray.add(taskDocument);
-            }
-
-            Document toDoListDocument = new Document()
-                    .append("title", toDoList.getTitle())
-                    .append("tasks", tasksArray);
-
-            toDoListsArray.add(toDoListDocument);
-        }
-
-        Document userDocument = new Document()
-                .append("_id", new ObjectId())
-                .append("username", user.getUsername())
-                .append("age", user.getAge())
-                .append("toDoList", toDoListsArray);
-
-        collection.insertOne(userDocument);
-    }
-    public User findUserByUsername(String username) {
-        MongoCollection<Document> collection = database.getCollection(username);
-        Document query = new Document("username", username);
-        Document userDocument = collection.find(query).first();
-        if (userDocument != null) {
-            String foundUsername = userDocument.getString("username");
-            int age = userDocument.getInteger("age");
-
-            List<ToDo> toDoList = new ArrayList<>();
-            List<Document> toDoListsArray = (List<Document>) userDocument.get("toDoList");
-            for (Document toDoListDocument : toDoListsArray) {
-                String title = toDoListDocument.getString("title");
-
-                List<Task> tasks = new ArrayList<>();
-                List<Document> tasksArray = (List<Document>) toDoListDocument.get("tasks");
-                for (Document taskDocument : tasksArray) {
-                    String description = taskDocument.getString("description");
-                    boolean isDone = taskDocument.getBoolean("isDone");
-                    tasks.add(new Task(description, isDone));
+        try {
+            MongoCollection<Document> collection = database.getCollection(userCollection);
+            List<Document> toDoListsArray = new ArrayList<>();
+            for (ToDo toDoList : user.getToDoList()) {
+                List<Document> tasksArray = new ArrayList<>();
+                for (Task task : toDoList.getTasks()) {
+                    Document taskDocument = new Document()
+                            .append("description", task.getDescription())
+                            .append("isDone", task.isDone());
+                    tasksArray.add(taskDocument);
                 }
 
-                toDoList.add(new ToDo(title, tasks));
+                Document toDoListDocument = new Document()
+                        .append("title", toDoList.getTitle())
+                        .append("tasks", tasksArray);
+
+                toDoListsArray.add(toDoListDocument);
             }
 
-            return new User(foundUsername, age, toDoList);
+            Document userDocument = new Document()
+                    .append("_id", new ObjectId())
+                    .append("username", user.getUsername())
+                    .append("age", user.getAge())
+                    .append("toDoList", toDoListsArray);
+
+            collection.insertOne(userDocument);
+        } catch (MongoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public User findUserByUsername(String username) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(userCollection);
+            Document query = new Document("username", username);
+            Document userDocument = collection.find(query).first();
+            if (userDocument != null) {
+                String foundUsername = userDocument.getString("username");
+                int age = userDocument.getInteger("age");
+
+                List<ToDo> toDoList = new ArrayList<>();
+                List<Document> toDoListsArray = (List<Document>) userDocument.get("toDoList");
+                for (Document toDoListDocument : toDoListsArray) {
+                    String title = toDoListDocument.getString("title");
+
+                    List<Task> tasks = new ArrayList<>();
+                    List<Document> tasksArray = (List<Document>) toDoListDocument.get("tasks");
+                    for (Document taskDocument : tasksArray) {
+                        String description = taskDocument.getString("description");
+                        boolean isDone = taskDocument.getBoolean("isDone");
+                        tasks.add(new Task(description, isDone));
+                    }
+
+                    toDoList.add(new ToDo(title, tasks));
+                }
+                return new User(foundUsername, age, toDoList);
+            }
+        } catch (MongoException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
         return null;
     }

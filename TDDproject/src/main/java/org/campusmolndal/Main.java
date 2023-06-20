@@ -16,7 +16,8 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) {
 
-
+        Databse databse = new Databse("ToDo");
+        /*
         User Samer = new User("Samer", 30);
 
         ToDo list1 = new ToDo();
@@ -30,11 +31,15 @@ public class Main {
         Samer.addToDoList(list1);
         Samer.addToDoList(list2);
 
+        //databse.createUser(Samer);
 
-        System.out.println(Samer.toString());
 
-        List<ToDo> ll = Samer.getToDoList();
-        System.out.println(ll.get(1).toString());
+         */
+        User fromDB = databse.findUserByUsername("Samer");
+        System.out.println(fromDB.toString());
+
+        List<ToDo> lis = fromDB.getToDoList();
+        System.out.println(lis.get(0).toString());
 
     }
 }
