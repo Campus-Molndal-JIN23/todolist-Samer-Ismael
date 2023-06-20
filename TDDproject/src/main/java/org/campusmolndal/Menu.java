@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Menu {
 
-    private Databse databse;
+    private DatabseFacade databse;
     private User user;
     private String olName;
 
     public Menu(){
-        this.databse = new Databse("ToDo");
+        this.databse = new DatabseFacade("ToDo");
         start();
         while (true) {
             showToDoLists();
@@ -30,7 +30,7 @@ public class Menu {
         olName = user.getUsername();
     }
     public void createUser (){
-        System.out.println("Whats your name? ");
+        System.out.println("Rewrite your name? ");
         String name = ScannerUtil.getTheInput().nextLine();
         System.out.println("How old are you? ");
         int age = ScannerUtil.getTheInput().nextInt();
@@ -60,6 +60,7 @@ public class Menu {
         System.out.println("3. Set as not done.");
         System.out.println("4. Delete.");
         System.out.println("5. Edit.");
+        System.out.println("6. Go back.");
         System.out.println("---------------------");
         int number = ScannerUtil.getTheInput().nextInt();
         return number;
@@ -143,6 +144,23 @@ public class Menu {
             List<ToDo> list = user.getToDoList();
             ToDo tempList = list.get(listNumber);
             tempList.deleteTask(index);
+
+            databse.updateUser(user, olName);
+        }
+        if (choice == 5) {
+            System.out.println("Enter the number of the task: ");
+            int index = ScannerUtil.getTheInput().nextInt();
+            List<ToDo> list = user.getToDoList();
+            ToDo tempList = list.get(listNumber);
+
+            System.out.println("Enter your new text: ");
+            String newText = ScannerUtil.getTheInput().nextLine();
+            System.out.println("Is it done? (Y,N)");
+            String done = ScannerUtil.getTheInput().nextLine();
+            Boolean isDone = false;
+            if (done.toLowerCase().equals("y")) isDone = true;
+            Task tempTask = new Task(newText,isDone);
+            tempList.updateTask(index,tempTask);
 
             databse.updateUser(user, olName);
         } else {

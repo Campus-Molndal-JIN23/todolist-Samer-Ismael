@@ -3,9 +3,9 @@ package org.campusmolndal;
 public class DatabseFacade {
 
     private Databse database;
-
-    public DatabseFacade (){
-        database = new Databse("Todo");
+    private String DbName;
+    public DatabseFacade (String name){
+        database = new Databse(name);
 
     }
     public void closeDatabase() {

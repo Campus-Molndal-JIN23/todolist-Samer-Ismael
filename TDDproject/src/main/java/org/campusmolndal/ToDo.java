@@ -52,8 +52,8 @@ public class ToDo {
         StringBuilder sb = new StringBuilder();
         int counter = 0;
         for (Task task : tasks) {
-            sb.append(counter++ + ". " + getTitle()).append("\n");
-            sb.append("Description: ").append(task.getDescription()).append("\n");
+            sb.append(getTitle()).append("\n");
+            sb.append("Task " + counter++ + ": ").append(task.getDescription()).append("\n");
             sb.append("Is Done: ").append(task.isDone()).append("\n");
             sb.append("-----------------------------\n");
         }

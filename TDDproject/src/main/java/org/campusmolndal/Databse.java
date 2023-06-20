@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Databse {
     private final String connString = "mongodb://localhost:27017";
-    private final String DBName = "ToDo Database";
+    private final String DBName = "ToDoDatabase";
     private final String userCollection = "lusers";
     private MongoClient mongoClient;
     private MongoDatabase database;
@@ -25,6 +25,10 @@ public class Databse {
 
     public void close() {
         mongoClient.close();
+    }
+
+    public String getDBName() {
+        return this.DBName;
     }
 
     public void createUser(User user) {
