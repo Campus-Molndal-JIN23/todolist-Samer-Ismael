@@ -58,6 +58,7 @@ public class Databse {
             System.out.println(e.getMessage());
         }
     }
+
     public User findUserByUsername(String username) {
         try {
             MongoCollection<Document> collection = database.getCollection(userCollection);
@@ -83,12 +84,14 @@ public class Databse {
                     toDoList.add(new ToDo(title, tasks));
                 }
                 return new User(foundUsername, age, toDoList);
+            } else {
+                System.out.println("User not found");
+                return null;
             }
         } catch (MongoException e) {
             System.out.println(e.getMessage());
             return null;
         }
-        return null;
     }
 
     public void updateUser(User newUser, String oldName) {

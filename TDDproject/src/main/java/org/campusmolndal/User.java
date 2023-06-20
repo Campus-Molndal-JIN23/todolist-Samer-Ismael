@@ -43,12 +43,13 @@ public class User {
 
     @Override
     public String toString() {
+        int counter = 0;
         StringBuilder sb = new StringBuilder();
         sb.append("User: ").append(username).append("\n");
         sb.append("Age: ").append(age).append("\n");
         sb.append("To-Do Lists:\n");
         for (ToDo toDo : toDoList) {
-            sb.append(toDo.getTitle()).append("\n");
+            sb.append(counter++ + ". " +toDo.getTitle()).append("\n");
         }
         return sb.toString();
     }

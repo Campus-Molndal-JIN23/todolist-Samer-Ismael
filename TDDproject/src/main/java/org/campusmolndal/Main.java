@@ -33,14 +33,14 @@ public class Main {
 
         //databse.createUser(Samer);
         //databse.updateUser(Samer,"m");
-        databse.deleteUser(Samer);
+        //databse.deleteUser(Samer);
 
 
         User fromDB = databse.findUserByUsername("Samer");
-        System.out.println(fromDB.toString());
+        //System.out.println(fromDB.toString());
 
-        List<ToDo> lis = fromDB.getToDoList();
-        System.out.println(lis.get(0).toString());
+        //List<ToDo> lis = fromDB.getToDoList();
+        //System.out.println(lis.get(0).toString());
 
 
 

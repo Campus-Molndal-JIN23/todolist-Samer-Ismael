@@ -50,8 +50,9 @@ public class ToDo {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        int counter = 0;
         for (Task task : tasks) {
-            sb.append(getTitle()).append("\n");
+            sb.append(counter++ + ". " + getTitle()).append("\n");
             sb.append("Description: ").append(task.getDescription()).append("\n");
             sb.append("Is Done: ").append(task.isDone()).append("\n");
             sb.append("-----------------------------\n");
