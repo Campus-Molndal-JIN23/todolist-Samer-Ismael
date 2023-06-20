@@ -18,8 +18,9 @@ public class Menu {
     }
     public void start (){
 
-        System.out.println("Welcome, Enter your name");
+        System.out.println("Welcome, Enter your name or 'Exit' if you want to exit: ");
         String name = ScannerUtil.getTheInput().nextLine();
+        if (name.toLowerCase().equals("exit")) System.exit(0);
 
         if (databse.findUserByUsername(name) == null) {
             System.out.println("Hmmm I see.... new user ");
@@ -112,7 +113,7 @@ public class Menu {
                 String answer = ScannerUtil.getTheInput().nextLine();
                 if (answer.toLowerCase().equals("y")) {
                     databse.deleteUser(user);
-                    System.exit(0);
+                    var menu = new Menu();
                 } else {
                     //Do nothing
                 }
