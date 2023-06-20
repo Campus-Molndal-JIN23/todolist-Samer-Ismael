@@ -10,6 +10,12 @@ public class ToDo {
     public ToDo() {
         this.tasks = new ArrayList<>();
     }
+    // for updating to do
+    public ToDo (String title, List<Task> tasks){
+        this.tasks = tasks;
+        this.title = title;
+
+    }
 
     public String getTitle() {
         return title;
@@ -45,6 +51,7 @@ public class ToDo {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {
+            sb.append(getTitle()).append("\n");
             sb.append("Description: ").append(task.getDescription()).append("\n");
             sb.append("Is Done: ").append(task.isDone()).append("\n");
             sb.append("-----------------------------\n");

@@ -1,6 +1,8 @@
 package org.campusmolndal;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /*
  * ----------------------------------------------------------------------------
@@ -15,17 +17,24 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ToDo list = new ToDo();
-        list.setTitle("sa");
-        System.out.println(list.getTitle());
-        list.addTask(new Task("Dish",false));
-        list.addTask(new Task("Clean",true));
-        list.addTask(new Task("Go",false));
-        System.out.println(list.toString());
-        System.out.println("--------------");
-        list.setDoneOrNotDone(0, true);
-        System.out.println(list.toString());
+        User Samer = new User("Samer", 30);
 
+        ToDo list1 = new ToDo();
+        list1.setTitle("Home");
+        list1.addTask(new Task("Cleaning", false));
+
+        ToDo list2 = new ToDo();
+        list2.setTitle("School");
+        list2.addTask(new Task("Making to do list program", false));
+
+        Samer.addToDoList(list1);
+        Samer.addToDoList(list2);
+
+
+        System.out.println(Samer.toString());
+
+        List<ToDo> ll = Samer.getToDoList();
+        System.out.println(ll.get(1).toString());
 
     }
 }
