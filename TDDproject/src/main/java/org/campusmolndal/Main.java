@@ -1,5 +1,7 @@
 package org.campusmolndal;
 
+import java.util.ArrayList;
+
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2019-2023 Marcus Medina, Campus Mölndal
@@ -13,13 +15,18 @@ public class Main {
     public static void main(String[] args) {
 
 
-        System.out.println("Enter a number: ");
-        int number = ScannerUtil.getTheInput().nextInt();
-        System.out.println(number);
-        System.out.println("2");
-        System.out.println("Enter a word: ");
-        String word = ScannerUtil.getTheInput().nextLine();
-        System.out.println(word);
+        ToDo list = new ToDo();
+        list.setTitle("sa");
+        System.out.println(list.getTitle());
+        list.addTask(new Task("Dish",false));
+        list.addTask(new Task("Clean",true));
+        list.addTask(new Task("Go",false));
+        System.out.println(list.toString());
+        System.out.println("--------------");
+        list.setDoneOrNotDone(0, true);
+        System.out.println(list.toString());
+
+
     }
 }
 
