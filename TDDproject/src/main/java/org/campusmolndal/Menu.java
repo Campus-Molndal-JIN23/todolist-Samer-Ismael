@@ -137,7 +137,7 @@ public class Menu {
             ToDo temp = list.get(listNumber);
             System.out.println("Enter you task");
             String description = ScannerUtil.getTheInput().nextLine();
-            System.out.println("Is it done (Y,N)");
+            System.out.println("Do you want to set it to done? (Y,N)");
             String done = ScannerUtil.getTheInput().nextLine();
             Boolean isDone = false;
             if (done.toLowerCase().equals("y")) isDone = true;
