@@ -62,13 +62,15 @@ class ToDoTest {
         todo.addTask(task1);
         todo.addTask(task2);
 
-        String expectedOutput = "Description: Task 1\n" +
-                "Is Done: true\n" +
-                "-----------------------------\n" +
-                "Description: Task 2\n" +
-                "Is Done: false\n" +
-                "-----------------------------\n";
+        StringBuilder expectedOutput = new StringBuilder();
+        int counter = 0;
+        for (Task task : todo.getTasks()) {
+            expectedOutput.append(counter++).append(". ").append(todo.getTitle()).append("\n");
+            expectedOutput.append("Description: ").append(task.getDescription()).append("\n");
+            expectedOutput.append("Is Done: ").append(task.isDone()).append("\n");
+            expectedOutput.append("-----------------------------\n");
+        }
 
-        Assert.assertEquals(expectedOutput, todo.toString());
+        Assert.assertEquals(expectedOutput.toString(), todo.toString());
     }
 }

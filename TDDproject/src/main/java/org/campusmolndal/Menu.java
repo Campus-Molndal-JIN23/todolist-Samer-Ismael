@@ -105,6 +105,8 @@ public class Menu {
         }
         if (number == 5) {
             System.exit(0);
+        } else {
+            //do nothing, but please don't crash
         }
     }
     public void optionHandlerForTasks (int listNumber, int choice){
@@ -142,7 +144,9 @@ public class Menu {
             ToDo tempList = list.get(listNumber);
             tempList.deleteTask(index);
 
-            databse.updateUser(user,olName);
+            databse.updateUser(user, olName);
+        } else {
+            // do nothing, but please don't crash
         }
     }
 }

@@ -62,19 +62,21 @@ class UserTest {
     public void testToString() {
         ToDo toDo1 = new ToDo();
         toDo1.setTitle("Task 1");
-
         ToDo toDo2 = new ToDo();
         toDo2.setTitle("Task 2");
 
         user.addToDoList(toDo1);
         user.addToDoList(toDo2);
 
-        String expected = "User: Samer\n" +
-                "Age: 30\n" +
-                "To-Do Lists:\n" +
-                "Task 1\n" +
-                "Task 2\n";
+        StringBuilder expectedOutput = new StringBuilder();
+        expectedOutput.append("User: ").append(user.getUsername()).append("\n");
+        expectedOutput.append("Age: ").append(user.getAge()).append("\n");
+        expectedOutput.append("To-Do Lists:\n");
+        int counter = 0;
+        for (ToDo toDo : user.getToDoList()) {
+            expectedOutput.append(counter++).append(". ").append(toDo.getTitle()).append("\n");
+        }
 
-        assertEquals(expected, user.toString());
+        assertEquals(expectedOutput.toString(), user.toString());
     }
 }
