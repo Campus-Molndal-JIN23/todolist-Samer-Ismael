@@ -51,7 +51,7 @@ public class ScannerUtil {
         do {
             result = scanner.nextLine();
             if (result.isEmpty()) {
-                System.out.println("Invalid input. Please enter a non-empty string: ");
+                System.out.println("Please enter a non-empty string: ");
             }
         } while (result.isEmpty());
 
