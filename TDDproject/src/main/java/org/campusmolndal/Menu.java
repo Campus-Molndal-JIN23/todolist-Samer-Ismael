@@ -66,126 +66,132 @@ public class Menu {
         return number;
     }
     public void optionHandlerForToDo (int number){
+        try {
+            if (number == 1) {
+                ToDo todo = new ToDo();
+                System.out.println("Enter list name: ");
+                String name = ScannerUtil.getTheInput().nextLine();
+                todo.setTitle(name);
+                user.addToDoList(todo);
 
-        if (number == 1) {
-            ToDo todo = new ToDo();
-            System.out.println("Enter list name: ");
-            String name = ScannerUtil.getTheInput().nextLine();
-            todo.setTitle(name);
-            user.addToDoList(todo);
+                databse.updateUser(user,olName);
 
-            databse.updateUser(user,olName);
-
-        }
-        if (number == 2) {
-            System.out.println("Enter the list number: ");
-            int listNumber = ScannerUtil.getTheInput().nextInt();
-            showTasks(listNumber);
-            int taskNumber = optionForTasks();
-            optionHandlerForTasks(listNumber,taskNumber);
-        }
-        if (number == 3) {
-            System.out.println("Enter the list number: ");
-            showToDoLists();
-            List<ToDo> list = user.getToDoList();
-            int listNumber = ScannerUtil.getTheInput().nextInt();
-            user.removeFromToDoList(list.remove(listNumber));
-            databse.updateUser(user, olName);
-            System.out.println("Done!");
-        }
-        if (number == 4) {
-            System.out.println("Enter the list number: ");
-            showToDoLists();
-            List<ToDo> list = user.getToDoList();
-            int listNumber = ScannerUtil.getTheInput().nextInt();
-            System.out.println("Enter the new list name: ");
-            String newName = ScannerUtil.getTheInput().nextLine();
-            list.get(listNumber).setTitle(newName);
-            databse.updateUser(user, olName);
-            System.out.println("Done!");
-        }
-        if (number == 5) {
-            System.out.println("1. Delete account");
-            System.out.println("2. Change your name");
-            int choice = ScannerUtil.getTheInput().nextInt();
-            if (choice == 1) {
-                System.out.println("Are you shore you want to delete it (Y,N)");
-                String answer = ScannerUtil.getTheInput().nextLine();
-                if (answer.toLowerCase().equals("y")) {
-                    databse.deleteUser(user);
-                    var menu = new Menu();
-                } else {
-                    //Do nothing
+            }
+            if (number == 2) {
+                System.out.println("Enter the list number: ");
+                int listNumber = ScannerUtil.getTheInput().nextInt();
+                showTasks(listNumber);
+                int taskNumber = optionForTasks();
+                optionHandlerForTasks(listNumber,taskNumber);
+            }
+            if (number == 3) {
+                System.out.println("Enter the list number: ");
+                showToDoLists();
+                List<ToDo> list = user.getToDoList();
+                int listNumber = ScannerUtil.getTheInput().nextInt();
+                user.removeFromToDoList(list.remove(listNumber));
+                databse.updateUser(user, olName);
+                System.out.println("Done!");
+            }
+            if (number == 4) {
+                System.out.println("Enter the list number: ");
+                showToDoLists();
+                List<ToDo> list = user.getToDoList();
+                int listNumber = ScannerUtil.getTheInput().nextInt();
+                System.out.println("Enter the new list name: ");
+                String newName = ScannerUtil.getTheInput().nextLine();
+                list.get(listNumber).setTitle(newName);
+                databse.updateUser(user, olName);
+                System.out.println("Done!");
+            }
+            if (number == 5) {
+                System.out.println("1. Delete account");
+                System.out.println("2. Change your name");
+                int choice = ScannerUtil.getTheInput().nextInt();
+                if (choice == 1) {
+                    System.out.println("Are you shore you want to delete it (Y,N)");
+                    String answer = ScannerUtil.getTheInput().nextLine();
+                    if (answer.toLowerCase().equals("y")) {
+                        databse.deleteUser(user);
+                        var menu = new Menu();
+                    } else {
+                        //Do nothing
+                    }
+                }
+                if (choice == 2) {
+                    System.out.println("Enter your new name: ");
+                    String newName = ScannerUtil.getTheInput().nextLine();
+                    user.setUsername(newName);
+                    databse.updateUser(user,olName);
                 }
             }
-            if (choice == 2) {
-                System.out.println("Enter your new name: ");
-                String newName = ScannerUtil.getTheInput().nextLine();
-                user.setUsername(newName);
-                databse.updateUser(user,olName);
+            if (number == 6) {
+                System.exit(0);
+            } else {
+                //do nothing, but please don't crash
             }
-        }
-        if (number == 6) {
-            System.exit(0);
-        } else {
-            //do nothing, but please don't crash
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
     public void optionHandlerForTasks (int listNumber, int choice){
+        try {
+            if (choice == 1) {
+                List<ToDo> list = user.getToDoList();
+                ToDo temp = list.get(listNumber);
+                System.out.println("Enter you task");
+                String description = ScannerUtil.getTheInput().nextLine();
+                System.out.println("Do you want to set it to done? (Y,N)");
+                String done = ScannerUtil.getTheInput().nextLine();
+                Boolean isDone = false;
+                if (done.toLowerCase().equals("y")) isDone = true;
+                temp.addTask(new Task(description, isDone));
 
-        if (choice == 1) {
-            List<ToDo> list = user.getToDoList();
-            ToDo temp = list.get(listNumber);
-            System.out.println("Enter you task");
-            String description = ScannerUtil.getTheInput().nextLine();
-            System.out.println("Do you want to set it to done? (Y,N)");
-            String done = ScannerUtil.getTheInput().nextLine();
-            Boolean isDone = false;
-            if (done.toLowerCase().equals("y")) isDone = true;
-            temp.addTask(new Task(description, isDone));
+                databse.updateUser(user,olName);
 
-            databse.updateUser(user,olName);
+            }
+            if (choice == 2 || choice == 3) {
+                System.out.println("Enter the number of the task: ");
+                int index = ScannerUtil.getTheInput().nextInt();
+                List<ToDo> list = user.getToDoList();
+                ToDo tempList = list.get(listNumber);
+                Task tempTask = tempList.getTasks().get(index);
 
-        }
-        if (choice == 2 || choice == 3) {
-            System.out.println("Enter the number of the task: ");
-            int index = ScannerUtil.getTheInput().nextInt();
-            List<ToDo> list = user.getToDoList();
-            ToDo tempList = list.get(listNumber);
-            Task tempTask = tempList.getTasks().get(index);
+                if (choice == 2) tempTask.setIsDone(true);
+                if (choice == 3) tempTask.setIsDone(false);
 
-            if (choice == 2) tempTask.setIsDone(true);
-            if (choice == 3) tempTask.setIsDone(false);
+                databse.updateUser(user,olName);
+            }
+            if (choice == 4) {
+                System.out.println("Enter the number of the task: ");
+                int index = ScannerUtil.getTheInput().nextInt();
+                List<ToDo> list = user.getToDoList();
+                ToDo tempList = list.get(listNumber);
+                tempList.deleteTask(index);
 
-            databse.updateUser(user,olName);
-        }
-        if (choice == 4) {
-            System.out.println("Enter the number of the task: ");
-            int index = ScannerUtil.getTheInput().nextInt();
-            List<ToDo> list = user.getToDoList();
-            ToDo tempList = list.get(listNumber);
-            tempList.deleteTask(index);
+                databse.updateUser(user, olName);
+            }
+            if (choice == 5) {
+                System.out.println("Enter the number of the task: ");
+                int index = ScannerUtil.getTheInput().nextInt();
+                List<ToDo> list = user.getToDoList();
+                ToDo tempList = list.get(listNumber);
 
-            databse.updateUser(user, olName);
-        }
-        if (choice == 5) {
-            System.out.println("Enter the number of the task: ");
-            int index = ScannerUtil.getTheInput().nextInt();
-            List<ToDo> list = user.getToDoList();
-            ToDo tempList = list.get(listNumber);
+                System.out.println("Enter your new text: ");
+                String newText = ScannerUtil.getTheInput().nextLine();
+                System.out.println("Is it done? (Y,N)");
+                String done = ScannerUtil.getTheInput().nextLine();
+                Boolean isDone = false;
+                if (done.toLowerCase().equals("y")) isDone = true;
+                Task tempTask = new Task(newText,isDone);
+                tempList.updateTask(index,tempTask);
 
-            System.out.println("Enter your new text: ");
-            String newText = ScannerUtil.getTheInput().nextLine();
-            System.out.println("Is it done? (Y,N)");
-            String done = ScannerUtil.getTheInput().nextLine();
-            Boolean isDone = false;
-            if (done.toLowerCase().equals("y")) isDone = true;
-            Task tempTask = new Task(newText,isDone);
-            tempList.updateTask(index,tempTask);
-
-            databse.updateUser(user, olName);
-        } else {
-            // do nothing, but please don't crash
+                databse.updateUser(user, olName);
+            } else {
+                // do nothing, but please don't crash
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
