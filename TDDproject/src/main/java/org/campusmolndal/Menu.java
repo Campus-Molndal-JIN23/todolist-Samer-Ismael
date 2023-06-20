@@ -17,24 +17,32 @@ public class Menu {
         }
     }
     public void start (){
+        try {
+            System.out.println("Welcome, Enter your name or 'Exit' if you want to exit: ");
+            String name = ScannerUtil.getTheInput().nextLine();
+            if (name.toLowerCase().equals("exit")) System.exit(0);
 
-        System.out.println("Welcome, Enter your name or 'Exit' if you want to exit: ");
-        String name = ScannerUtil.getTheInput().nextLine();
-        if (name.toLowerCase().equals("exit")) System.exit(0);
+            if (databse.findUserByUsername(name) == null) {
+                System.out.println("Hmmm I see.... new user ");
+                createUser(name);
+            } else {
+                user = databse.findUserByUsername(name);
+            }
+            olName = user.getUsername();
 
-        if (databse.findUserByUsername(name) == null) {
-            System.out.println("Hmmm I see.... new user ");
-            createUser(name);
-        } else {
-            user = databse.findUserByUsername(name);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        olName = user.getUsername();
     }
     public void createUser (String name){
-        System.out.println("How old are you? ");
-        int age = ScannerUtil.getTheInput().nextInt();
-        user = new User(name,age);
-        databse.createUser(user);
+        try {
+            System.out.println("How old are you? ");
+            int age = ScannerUtil.getTheInput().nextInt();
+            user = new User(name,age);
+            databse.createUser(user);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     public void showToDoLists (){
         System.out.println(user.toString());
@@ -43,7 +51,7 @@ public class Menu {
         List<ToDo> list = user.getToDoList();
         System.out.println(list.get(index).toString());
     }
-    public int optionsForTodo (){
+    public int optionsForTodo () {
         System.out.println("1. create new.");
         System.out.println("2. Open.");
         System.out.println("3. Delete.");
@@ -51,7 +59,12 @@ public class Menu {
         System.out.println("5. Account settings.");
         System.out.println("6. Exit");
         System.out.println("-------------------");
-        int number = ScannerUtil.getTheInput().nextInt();
+        int number = 0;
+        try {
+            number = ScannerUtil.getTheInput().nextInt();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return number;
     }
     public int optionForTasks (){
@@ -62,7 +75,12 @@ public class Menu {
         System.out.println("5. Go back.");
         System.out.println("6. Edit.");
         System.out.println("---------------------");
-        int number = ScannerUtil.getTheInput().nextInt();
+        int number = 0;
+        try {
+            number = ScannerUtil.getTheInput().nextInt();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return number;
     }
     public void optionHandlerForToDo (int number){
