@@ -16,7 +16,7 @@ class DatabseFacadeTest {
     @BeforeEach
     public void setup() {
         mockedDatabase = mock(Databse.class);
-        databaseFacade = new DatabseFacade();
+        databaseFacade = new DatabseFacade("name");
         databaseFacade.setDatabse(mockedDatabase);
     }
 

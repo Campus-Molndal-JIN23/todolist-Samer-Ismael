@@ -65,8 +65,8 @@ class ToDoTest {
         StringBuilder expectedOutput = new StringBuilder();
         int counter = 0;
         for (Task task : todo.getTasks()) {
-            expectedOutput.append(counter++).append(". ").append(todo.getTitle()).append("\n");
-            expectedOutput.append("Description: ").append(task.getDescription()).append("\n");
+            expectedOutput.append(todo.getTitle()).append("\n");
+            expectedOutput.append("Task " + counter++ + ": ").append(task.getDescription()).append("\n");
             expectedOutput.append("Is Done: ").append(task.isDone()).append("\n");
             expectedOutput.append("-----------------------------\n");
         }
