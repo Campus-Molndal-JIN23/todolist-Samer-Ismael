@@ -8,6 +8,10 @@ public class User {
     private int age;
     private List<ToDo> toDoList;
 
+    public User() {
+        this.toDoList = new ArrayList<>();
+    }
+
     public User(String username, int age) {
         this.username = username;
         this.age = age;

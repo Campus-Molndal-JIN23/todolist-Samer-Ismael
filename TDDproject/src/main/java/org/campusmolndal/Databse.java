@@ -28,31 +28,35 @@ public class Databse {
     }
 
     public void createUser(User user) {
+        // för att lägga till en User så behöver man loppa igenom todo listan
+        //  och sen för varje lista ska man göra en loop som hämnat alla tasks i den listan.
         try {
             MongoCollection<Document> collection = database.getCollection(userCollection);
             List<Document> toDoListsArray = new ArrayList<>();
             for (ToDo toDoList : user.getToDoList()) {
                 List<Document> tasksArray = new ArrayList<>();
                 for (Task task : toDoList.getTasks()) {
+                    // För varje task i en todo lista skapar vi document
                     Document taskDocument = new Document()
                             .append("description", task.getDescription())
                             .append("isDone", task.isDone());
                     tasksArray.add(taskDocument);
                 }
-
+                //För varje todo lista i User klassen skapar vi Document
                 Document toDoListDocument = new Document()
                         .append("title", toDoList.getTitle())
                         .append("tasks", tasksArray);
 
                 toDoListsArray.add(toDoListDocument);
             }
-
+            // Nu skapar vi en User Document men de andra två listor i den.
             Document userDocument = new Document()
                     .append("_id", new ObjectId())
                     .append("username", user.getUsername())
                     .append("age", user.getAge())
                     .append("toDoList", toDoListsArray);
 
+            //in i databasen i 20 minuter på 250 grader.
             collection.insertOne(userDocument);
         } catch (MongoException e) {
             System.out.println(e.getMessage());
@@ -85,7 +89,6 @@ public class Databse {
                 }
                 return new User(foundUsername, age, toDoList);
             } else {
-                System.out.println("User not found");
                 return null;
             }
         } catch (MongoException e) {
@@ -98,7 +101,8 @@ public class Databse {
         try {
             User temp = findUserByUsername(oldName);
             if (temp != null) {
-                // Create a copy of the temp user and update its fields with the new values
+                // Skapar temp här för att kunna hitta den användaren som ska uppdateras.
+                // Och se till att den finns i databasen
 
                 MongoCollection<Document> collection = database.getCollection(userCollection);
                 Document query = new Document("username", temp.getUsername());

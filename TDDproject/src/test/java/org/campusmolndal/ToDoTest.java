@@ -70,7 +70,6 @@ class ToDoTest {
             expectedOutput.append("Is Done: ").append(task.isDone()).append("\n");
             expectedOutput.append("-----------------------------\n");
         }
-
         Assert.assertEquals(expectedOutput.toString(), todo.toString());
     }
 }
