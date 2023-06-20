@@ -17,29 +17,33 @@ public class Main {
     public static void main(String[] args) {
 
         Databse databse = new Databse("ToDo");
-        /*
-        User Samer = new User("Samer", 30);
+
+        User Samer = new User("Samer", 4);
 
         ToDo list1 = new ToDo();
-        list1.setTitle("Home");
-        list1.addTask(new Task("Cleaning", false));
+        list1.setTitle("asdf");
+        list1.addTask(new Task("d", false));
 
         ToDo list2 = new ToDo();
-        list2.setTitle("School");
-        list2.addTask(new Task("Making to do list program", false));
+        list2.setTitle("UasdfasdfUU");
+        list2.addTask(new Task("d ", false));
 
         Samer.addToDoList(list1);
         Samer.addToDoList(list2);
 
         //databse.createUser(Samer);
+        //databse.updateUser(Samer,"m");
+        databse.deleteUser(Samer);
 
 
-         */
         User fromDB = databse.findUserByUsername("Samer");
         System.out.println(fromDB.toString());
 
         List<ToDo> lis = fromDB.getToDoList();
         System.out.println(lis.get(0).toString());
+
+
+
 
     }
 }

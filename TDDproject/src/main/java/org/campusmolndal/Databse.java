@@ -91,11 +91,43 @@ public class Databse {
         return null;
     }
 
-    public void updateUser(User user) {
-        MongoCollection<Document> collection = database.getCollection(userCollection);
-        Document query = new Document("username", user.getUsername());
-        Document update = new Document("$set", new Document("age", user.getAge()));
-        collection.updateOne(query, update);
+    public void updateUser(User newUser, String oldName) {
+        try {
+            User temp = findUserByUsername(oldName);
+            if (temp != null) {
+                // Create a copy of the temp user and update its fields with the new values
+
+                MongoCollection<Document> collection = database.getCollection(userCollection);
+                Document query = new Document("username", temp.getUsername());
+
+                List<Document> toDoListsArray = new ArrayList<>();
+                for (ToDo toDoList : newUser.getToDoList()) {
+                    List<Document> tasksArray = new ArrayList<>();
+                    for (Task task : toDoList.getTasks()) {
+                        Document taskDocument = new Document()
+                                .append("description", task.getDescription())
+                                .append("isDone", task.isDone());
+                        tasksArray.add(taskDocument);
+                    }
+
+                    Document toDoListDocument = new Document()
+                            .append("title", toDoList.getTitle())
+                            .append("tasks", tasksArray);
+
+                    toDoListsArray.add(toDoListDocument);
+                }
+
+                Document userDocument = new Document()
+                        .append("username", newUser.getUsername())
+                        .append("age", newUser.getAge())
+                        .append("toDoList", toDoListsArray);
+
+                Document update = new Document("$set", userDocument);
+                collection.updateOne(query, update);
+            }
+        } catch (MongoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void deleteUser(User user) {
