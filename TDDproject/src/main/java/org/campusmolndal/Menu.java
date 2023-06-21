@@ -10,12 +10,12 @@ public class Menu {
 
     public Menu() {
         databse = new DatabseFacade("ToDo");
-        this.start();
+        start();
         while (true) {
             //Jag börjar med att visa lista med ToDos man har,
             // sen kallar jag option hanterare och passerar jag de olika options man har som argument i metoden
-            this.showToDoLists();
-            this.optionHandlerForToDo(this.optionsForTodo());
+            showToDoLists();
+            optionHandlerForToDo(optionsForTodo());
         }
     }
 
@@ -28,11 +28,11 @@ public class Menu {
 
             if (null == databse.findUserByUsername(name)) {
                 System.out.println("Hmmm I see.... new user ");
-                this.createUser(name);
+                createUser(name);
             } else {
-                this.user = this.databse.findUserByUsername(name);
+                user = databse.findUserByUsername(name);
             }
-            this.olName = this.user.getUsername();
+            olName = user.getUsername();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -44,19 +44,19 @@ public class Menu {
         try {
             System.out.println("How old are you? ");
             int age = ScannerUtil.getTheInput().nextInt();
-            this.user = new User(name, age);
-            this.databse.createUser(this.user);
+            user = new User(name, age);
+            databse.createUser(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     public void showToDoLists() {
-        System.out.println(this.user.toString());
+        System.out.println(user.toString());
     }
 
     public void showTasks(int index) {
-        List<ToDo> list = this.user.getToDoList();
+        List<ToDo> list = user.getToDoList();
         System.out.println(list.get(index).toString());
     }
 
@@ -79,11 +79,11 @@ public class Menu {
 
     public void optionHandlerForToDo(int number) {
         try {
-            if (1 == number) this.createNewTodo();
-            if (2 == number) this.openToDo();
-            if (3 == number) this.deleteToDo();
-            if (4 == number) this.updateToDo();
-            if (5 == number) this.accountSettings();
+            if (1 == number) createNewTodo();
+            if (2 == number) openToDo();
+            if (3 == number) deleteToDo();
+            if (4 == number) updateToDo();
+            if (5 == number) accountSettings();
             if (6 == number) {
                 System.exit(0);
             } else {
@@ -113,11 +113,11 @@ public class Menu {
 
     public void optionHandlerForTasks(int listNumber, int choice) {
         try {
-            if (1 == choice) this.createNewTask(listNumber);
-            if (2 == choice || 3 == choice) this.setDoneAndNotDoneTask(listNumber, choice);
-            if (4 == choice) this.DeleteTask(listNumber);
+            if (1 == choice) createNewTask(listNumber);
+            if (2 == choice || 3 == choice) setDoneAndNotDoneTask(listNumber, choice);
+            if (4 == choice) DeleteTask(listNumber);
             if (5 == choice) {
-                this.editTask(listNumber);
+                editTask(listNumber);
             } else {
                 // do nothing, but please don't crash
             }
@@ -126,6 +126,7 @@ public class Menu {
         }
     }
 
+    //Här börjar alla privata metoder.
     private void accountSettings() {
         System.out.println("1. Delete account");
         System.out.println("2. Change your name");
@@ -134,7 +135,7 @@ public class Menu {
             System.out.println("Are you shore you want to delete it (Y,N)");
             String answer = ScannerUtil.getTheInput().nextLine();
             if ("y".equals(answer.toLowerCase())) {
-                this.databse.deleteUser(this.user);
+                databse.deleteUser(user);
                 var menu = new Menu();
             } else {
                 //Do nothing
@@ -143,39 +144,39 @@ public class Menu {
         if (2 == choice) {
             System.out.println("Enter your new name: ");
             String newName = ScannerUtil.getTheInput().nextLine();
-            this.user.setUsername(newName);
-            this.databse.updateUser(this.user, this.olName);
+            user.setUsername(newName);
+            databse.updateUser(user, olName);
         }
     }
 
     private void updateToDo() {
         System.out.println("Enter the list number: ");
-        this.showToDoLists();
-        List<ToDo> list = this.user.getToDoList();
+        showToDoLists();
+        List<ToDo> list = user.getToDoList();
         int listNumber = ScannerUtil.getTheInput().nextInt();
         System.out.println("Enter the new list name: ");
         String newName = ScannerUtil.getTheInput().nextLine();
         list.get(listNumber).setTitle(newName);
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
         System.out.println("Done!");
     }
 
     private void deleteToDo() {
         System.out.println("Enter the list number: ");
-        this.showToDoLists();
-        List<ToDo> list = this.user.getToDoList();
+        showToDoLists();
+        List<ToDo> list = user.getToDoList();
         int listNumber = ScannerUtil.getTheInput().nextInt();
-        this.user.removeFromToDoList(list.remove(listNumber));
-        this.databse.updateUser(this.user, this.olName);
+        user.removeFromToDoList(list.remove(listNumber));
+        databse.updateUser(user, olName);
         System.out.println("Done!");
     }
 
     private void openToDo() {
         System.out.println("Enter the list number: ");
         int listNumber = ScannerUtil.getTheInput().nextInt();
-        this.showTasks(listNumber);
-        int taskNumber = this.optionForTasks();
-        this.optionHandlerForTasks(listNumber, taskNumber);
+        showTasks(listNumber);
+        int taskNumber = optionForTasks();
+        optionHandlerForTasks(listNumber, taskNumber);
     }
 
     private void createNewTodo() {
@@ -183,15 +184,15 @@ public class Menu {
         System.out.println("Enter list name: ");
         String name = ScannerUtil.getTheInput().nextLine();
         todo.setTitle(name);
-        this.user.addToDoList(todo);
+        user.addToDoList(todo);
 
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
     }
 
     private void editTask(int listNumber) {
         System.out.println("Enter the number of the task: ");
         int index = ScannerUtil.getTheInput().nextInt();
-        List<ToDo> list = this.user.getToDoList();
+        List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
 
         System.out.println("Enter your new text: ");
@@ -203,34 +204,34 @@ public class Menu {
         Task tempTask = new Task(newText, isDone);
         tempList.updateTask(index, tempTask);
 
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
     }
 
     private void DeleteTask(int listNumber) {
         System.out.println("Enter the number of the task: ");
         int index = ScannerUtil.getTheInput().nextInt();
-        List<ToDo> list = this.user.getToDoList();
+        List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
         tempList.deleteTask(index);
 
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
     }
 
     private void setDoneAndNotDoneTask(int listNumber, int choice) {
         System.out.println("Enter the number of the task: ");
         int index = ScannerUtil.getTheInput().nextInt();
-        List<ToDo> list = this.user.getToDoList();
+        List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
         Task tempTask = tempList.getTasks().get(index);
 
         if (2 == choice) tempTask.setIsDone(true);
         if (3 == choice) tempTask.setIsDone(false);
 
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
     }
 
     private void createNewTask(int listNumber) {
-        List<ToDo> list = this.user.getToDoList();
+        List<ToDo> list = user.getToDoList();
         ToDo temp = list.get(listNumber);
         System.out.println("Enter you task");
         String description = ScannerUtil.getTheInput().nextLine();
@@ -240,6 +241,6 @@ public class Menu {
         if ("y".equals(done.toLowerCase())) isDone = true;
         temp.addTask(new Task(description, isDone));
 
-        this.databse.updateUser(this.user, this.olName);
+        databse.updateUser(user, olName);
     }
 }
