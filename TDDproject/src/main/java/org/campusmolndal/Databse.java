@@ -15,27 +15,27 @@ public class Databse {
     private final String connString = "mongodb://localhost:27017";
     private final String DBName = "ToDoDatabase";
     private final String userCollection = "lusers";
-    private MongoClient mongoClient;
-    private MongoDatabase database;
+    private final MongoClient mongoClient;
+    private final MongoDatabase database;
 
-    public Databse (String DBName) {
-        mongoClient = MongoClients.create(connString);
-        database = mongoClient.getDatabase(DBName);
+    public Databse(String DBName) {
+        this.mongoClient = MongoClients.create(this.connString);
+        this.database = this.mongoClient.getDatabase(DBName);
     }
 
     public void close() {
-        mongoClient.close();
+        this.mongoClient.close();
     }
 
     public String getDBName() {
-        return this.DBName;
+        return DBName;
     }
 
     public void createUser(User user) {
         // för att lägga till en User så behöver man loppa igenom todo listan
         //  och sen för varje lista ska man göra en loop som hämnat alla tasks i den listan.
         try {
-            MongoCollection<Document> collection = database.getCollection(userCollection);
+            MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
             List<Document> toDoListsArray = new ArrayList<>();
             for (ToDo toDoList : user.getToDoList()) {
                 List<Document> tasksArray = new ArrayList<>();
@@ -69,10 +69,10 @@ public class Databse {
 
     public User findUserByUsername(String username) {
         try {
-            MongoCollection<Document> collection = database.getCollection(userCollection);
+            MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
             Document query = new Document("username", username);
             Document userDocument = collection.find(query).first();
-            if (userDocument != null) {
+            if (null != userDocument) {
                 String foundUsername = userDocument.getString("username");
                 int age = userDocument.getInteger("age");
 
@@ -103,12 +103,12 @@ public class Databse {
 
     public void updateUser(User newUser, String oldName) {
         try {
-            User temp = findUserByUsername(oldName);
-            if (temp != null) {
+            User temp = this.findUserByUsername(oldName);
+            if (null != temp) {
                 // Skapar temp här för att kunna hitta den användaren som ska uppdateras.
                 // Och se till att den finns i databasen
 
-                MongoCollection<Document> collection = database.getCollection(userCollection);
+                MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
                 Document query = new Document("username", temp.getUsername());
 
                 List<Document> toDoListsArray = new ArrayList<>();
@@ -142,7 +142,7 @@ public class Databse {
     }
 
     public void deleteUser(User user) {
-        MongoCollection<Document> collection = database.getCollection(userCollection);
+        MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
         Document query = new Document("username", user.getUsername());
         collection.deleteOne(query);
     }
