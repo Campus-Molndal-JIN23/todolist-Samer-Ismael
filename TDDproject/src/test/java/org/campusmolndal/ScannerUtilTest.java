@@ -26,7 +26,7 @@ class ScannerUtilTest {
         when(mockScanner.nextInt()).thenThrow(new NoSuchElementException()).thenReturn(5);
 
         assertEquals(5, scannerUtil.nextInt());
-        verify(mockScanner, times(2)).nextInt();
+        verify(mockScanner, times(3)).nextInt();
     }
 
     @Test
