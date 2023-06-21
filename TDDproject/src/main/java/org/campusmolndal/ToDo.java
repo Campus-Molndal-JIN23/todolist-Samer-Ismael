@@ -57,7 +57,8 @@ public class ToDo {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int counter = 0;
-        for (Task task : this.tasks) {
+        if (tasks.isEmpty()) System.out.println("You dont have any tasks. ");
+        for (Task task : tasks) {
             sb.append(title).append("\n");
             sb.append("Task " + counter + ": ").append(task.getDescription()).append("\n");
             counter++;
