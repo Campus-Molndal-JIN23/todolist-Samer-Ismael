@@ -64,8 +64,6 @@ class ToDoTest {
 
         String expected = "My Tasks\n" +
                 "Task ID 0: Task 1 < Not done! >\n" +
-                "-----------------------------\n" +
-                "My Tasks\n" +
                 "Task ID 1: Task 2 < Done! >\n" +
                 "-----------------------------\n";
 
