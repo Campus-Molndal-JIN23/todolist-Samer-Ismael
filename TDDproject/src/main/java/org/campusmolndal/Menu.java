@@ -119,7 +119,7 @@ public class Menu {
             if (5 == choice) {
                 editTask(listNumber);
             } else {
-                // do nothing, but please don't crash
+                // do nothing
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -132,29 +132,36 @@ public class Menu {
         System.out.println("2. Change your name");
         System.out.println("3. List all users");
         int choice = ScannerUtil.getTheInput().nextInt();
-        if (1 == choice) {
-            System.out.println("Are you shore you want to delete it (Y,N)");
-            String answer = ScannerUtil.getTheInput().nextLine();
-            if ("y".equals(answer.toLowerCase())) {
-                databse.deleteUser(user);
-                var menu = new Menu();
-            } else {
-                //Do nothing
-            }
-        }
-        if (2 == choice) {
-            System.out.println("Enter your new name: ");
-            String newName = ScannerUtil.getTheInput().nextLine();
-            user.setUsername(newName);
-            databse.updateUser(user, olName);
-        }
-        if (3 == choice) {
-            List<User> users = databse.listAllUsers();
-            for (User user1 : users) {
 
-                System.out.println(user1.toString());
-                System.out.println("--------------");
-            }
+        if (1 == choice) accountSettingsDeleteAccount();
+        if (2 == choice) accountSettingsChangeName();
+        if (3 == choice) AccountSettingsListAll();
+    }
+
+    private void AccountSettingsListAll() {
+        List<User> users = databse.listAllUsers();
+        for (User user1 : users) {
+
+            System.out.println(user1.toString());
+            System.out.println("--------------");
+        }
+    }
+
+    private void accountSettingsChangeName() {
+        System.out.println("Enter your new name: ");
+        String newName = ScannerUtil.getTheInput().nextLine();
+        user.setUsername(newName);
+        databse.updateUser(user, olName);
+    }
+
+    private void accountSettingsDeleteAccount() {
+        System.out.println("Are you shore you want to delete it (Y,N)");
+        String answer = ScannerUtil.getTheInput().nextLine();
+        if ("y".equals(answer.toLowerCase())) {
+            databse.deleteUser(user);
+            var menu = new Menu();
+        } else {
+            //Do nothing
         }
     }
 
