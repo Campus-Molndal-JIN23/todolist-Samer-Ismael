@@ -130,6 +130,7 @@ public class Menu {
     private void accountSettings() {
         System.out.println("1. Delete account");
         System.out.println("2. Change your name");
+        System.out.println("3. List all users");
         int choice = ScannerUtil.getTheInput().nextInt();
         if (1 == choice) {
             System.out.println("Are you shore you want to delete it (Y,N)");
@@ -146,6 +147,14 @@ public class Menu {
             String newName = ScannerUtil.getTheInput().nextLine();
             user.setUsername(newName);
             databse.updateUser(user, olName);
+        }
+        if (3 == choice) {
+            List<User> users = databse.listAllUsers();
+            for (User user1 : users) {
+
+                System.out.println(user1.toString());
+                System.out.println("--------------");
+            }
         }
     }
 

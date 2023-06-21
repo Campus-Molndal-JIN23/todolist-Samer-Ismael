@@ -1,5 +1,7 @@
 package org.campusmolndal;
 
+import java.util.List;
+
 public class DatabseFacade {
 
     private Databse database;
@@ -37,5 +39,10 @@ public class DatabseFacade {
     //cruD
     public void deleteUser(User user) {
         this.database.deleteUser(user);
+    }
+
+    public List<User> listAllUsers (){
+        List<User> users = this.database.listAllUsers();
+        return users;
     }
 }

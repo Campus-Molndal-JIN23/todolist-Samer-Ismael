@@ -1,5 +1,9 @@
 package org.campusmolndal;
 
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2019-2023 Marcus Medina, Campus Mölndal
@@ -11,6 +15,11 @@ package org.campusmolndal;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
+
+        // För att ta bort varning meddelande som MongoDB skriver i början.
+        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+        mongoLogger.setLevel(Level.SEVERE);
+
 
         var start = new Menu();
 

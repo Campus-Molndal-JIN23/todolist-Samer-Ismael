@@ -1,10 +1,7 @@
 package org.campusmolndal;
 
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -145,5 +142,18 @@ public class Databse {
         MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
         Document query = new Document("username", user.getUsername());
         collection.deleteOne(query);
+    }
+    public List<User> listAllUsers() {
+        MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
+        FindIterable<Document> documents = collection.find();
+
+        List<User> userList = new ArrayList<>();
+        for (Document document : documents) {
+            String username = document.getString("username");
+
+            User user = findUserByUsername(username);
+            userList.add(user);
+        }
+        return userList;
     }
 }
