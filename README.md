@@ -13,6 +13,7 @@ This project is a Todo list application that helps users manage tasks and events
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+- [Diagram](#Class Diagram)
 
 ## Installation
 
@@ -49,5 +50,6 @@ Third-party assets used:
 
 This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 
+## Class Diagram
 ![todolist-Samer-Ismael.png](Rapport%20och%20diagram%2Ftodolist-Samer-Ismael.png)
 ---
