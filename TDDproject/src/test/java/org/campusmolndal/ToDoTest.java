@@ -57,19 +57,18 @@ class ToDoTest {
 
     @Test
     public void testToString() {
-        Task task1 = new Task("Task 1", true);
-        Task task2 = new Task("Task 2", false);
-        todo.addTask(task1);
-        todo.addTask(task2);
+        ToDo todo = new ToDo();
+        todo.setTitle("My Tasks");
+        todo.addTask(new Task("Task 1", false));
+        todo.addTask(new Task("Task 2", true));
 
-        StringBuilder expectedOutput = new StringBuilder();
-        int counter = 0;
-        for (Task task : todo.getTasks()) {
-            expectedOutput.append(todo.getTitle()).append("\n");
-            expectedOutput.append("Task " + counter++ + ": ").append(task.getDescription()).append("\n");
-            expectedOutput.append("Is Done: ").append(task.isDone()).append("\n");
-            expectedOutput.append("-----------------------------\n");
-        }
-        Assert.assertEquals(expectedOutput.toString(), todo.toString());
+        String expected = "My Tasks\n" +
+                "Task ID 0: Task 1 < Not done! >\n" +
+                "-----------------------------\n" +
+                "My Tasks\n" +
+                "Task ID 1: Task 2 < Done! >\n" +
+                "-----------------------------\n";
+
+        assertEquals(expected, todo.toString());
     }
 }
