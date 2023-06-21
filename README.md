@@ -45,7 +45,6 @@ Third-party assets used:
 - [Mockito Core 5.3.1](https://mvnrepository.com/artifact/org.mockito/mockito-core/5.3.1)
 - [JSON In Java 20230227 2.4.2](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-json/20230227.2.4.2)
 - [MongoDB Driver 4.9.1](https://mvnrepository.com/artifact/org.mongodb/mongodb-driver/4.9.1)
-- [SQLite JDBC 3.42.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.42.0.0)
 ## License
 
 This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
