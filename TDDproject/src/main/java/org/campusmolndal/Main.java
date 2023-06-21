@@ -20,7 +20,6 @@ public class Main {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
 
-
         var start = new Menu();
 
     }

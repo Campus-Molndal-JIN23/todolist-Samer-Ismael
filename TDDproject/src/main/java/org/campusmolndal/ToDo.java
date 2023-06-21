@@ -59,12 +59,16 @@ public class ToDo {
         int counter = 0;
         for (Task task : tasks) {
             sb.append(title).append("\n");
-            sb.append("Task " + counter + ": ").append(task.getDescription()).append("\n");
+            sb.append("Task ID " + counter + ": ").append(task.getDescription()).append(" " + isDoneConvert(task.isDone()));
             counter++;
-            sb.append("Is Done: ").append(task.isDone()).append("\n");
-            sb.append("-----------------------------\n");
+            sb.append("\n-----------------------------\n");
         }
         if (tasks.isEmpty()) System.out.println("You dont have any tasks. ");
         return sb.toString();
+    }
+    private String isDoneConvert (Boolean isDone){
+        String word = "< Not done! >";
+        if (isDone == true) word = "< Done! >";
+        return word;
     }
 }

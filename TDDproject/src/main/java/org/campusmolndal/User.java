@@ -55,9 +55,10 @@ public class User {
         StringBuilder sb = new StringBuilder();
         sb.append("User: ").append(this.username).append("\n");
         sb.append("Age: ").append(this.age).append("\n");
-        sb.append("To-Do Lists:\n");
+        sb.append("To-Do Lists:");
+        sb.append("\n------------------\n");
         for (ToDo toDo : toDoList) {
-            sb.append(counter + ". " + toDo.getTitle()).append("\n");
+            sb.append("List ID " + counter + ":" + toDo.getTitle()).append("\n");
             counter++;
         }
         if (toDoList.isEmpty()) System.out.println("You dont have any lists. ");

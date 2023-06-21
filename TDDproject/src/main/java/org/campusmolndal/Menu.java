@@ -166,7 +166,7 @@ public class Menu {
     }
 
     private void updateToDo() {
-        System.out.println("Enter the list number: ");
+        System.out.println("Enter list ID: ");
         showToDoLists();
         List<ToDo> list = user.getToDoList();
         int listNumber = ScannerUtil.getTheInput().nextInt();
@@ -178,7 +178,7 @@ public class Menu {
     }
 
     private void deleteToDo() {
-        System.out.println("Enter the list number: ");
+        System.out.println("Enter list ID: ");
         showToDoLists();
         List<ToDo> list = user.getToDoList();
         int listNumber = ScannerUtil.getTheInput().nextInt();
@@ -188,7 +188,7 @@ public class Menu {
     }
 
     private void openToDo() {
-        System.out.println("Enter the list number: ");
+        System.out.println("Enter list ID: ");
         int listNumber = ScannerUtil.getTheInput().nextInt();
         showTasks(listNumber);
         int taskNumber = optionForTasks();
@@ -197,7 +197,7 @@ public class Menu {
 
     private void createNewTodo() {
         ToDo todo = new ToDo();
-        System.out.println("Enter list name: ");
+        System.out.println("Enter list ID: ");
         String name = ScannerUtil.getTheInput().nextLine();
         todo.setTitle(name);
         user.addToDoList(todo);
@@ -206,7 +206,7 @@ public class Menu {
     }
 
     private void editTask(int listNumber) {
-        System.out.println("Enter the number of the task: ");
+        System.out.println("Enter Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
         List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
@@ -224,7 +224,7 @@ public class Menu {
     }
 
     private void DeleteTask(int listNumber) {
-        System.out.println("Enter the number of the task: ");
+        System.out.println("Enter Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
         List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
@@ -234,7 +234,7 @@ public class Menu {
     }
 
     private void setDoneAndNotDoneTask(int listNumber, int choice) {
-        System.out.println("Enter the number of the task: ");
+        System.out.println("Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
         List<ToDo> list = user.getToDoList();
         ToDo tempList = list.get(listNumber);
@@ -247,16 +247,22 @@ public class Menu {
     }
 
     private void createNewTask(int listNumber) {
-        List<ToDo> list = user.getToDoList();
-        ToDo temp = list.get(listNumber);
-        System.out.println("Enter you task");
-        String description = ScannerUtil.getTheInput().nextLine();
-        System.out.println("Do you want to set it to done? (Y,N)");
-        String done = ScannerUtil.getTheInput().nextLine();
-        Boolean isDone = false;
-        if ("y".equals(done.toLowerCase())) isDone = true;
-        temp.addTask(new Task(description, isDone));
+        Boolean exit = true;
+        do {
+            List<ToDo> list = user.getToDoList();
+            ToDo temp = list.get(listNumber);
+            System.out.println("Enter you tasks, or type 'Done' to leave this meny");
+            String description = ScannerUtil.getTheInput().nextLine();
+            if (description.toLowerCase().equals("done")) exit = false;
+            if (!description.toLowerCase().equals("done")) {
+                System.out.println("Do you want to set it to done? (Y,N)");
+                String done = ScannerUtil.getTheInput().nextLine();
+                Boolean isDone = false;
+                if ("y".equals(done.toLowerCase())) isDone = true;
+                temp.addTask(new Task(description, isDone));
 
-        databse.updateUser(user, olName);
+                databse.updateUser(user, olName);
+            }
+        } while (exit);
     }
 }
