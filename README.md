@@ -1,19 +1,13 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/MYVtI0hB)
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=11360346)
-# Project name
+
+# Todo list
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This project is a Todo list application that helps users manage tasks and events. It was developed to improve my programming skills and practice different concepts. By building this project, I aimed to create an effective solution for organizing and managing tasks. Throughout the process, I learned valuable lessons and gained experience in developing a functional and user-friendly application. I also learned about using GitHub Actions for automating tasks and improving the development workflow.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents 
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -22,51 +16,38 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To install the project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the required dependencies using the package manager of your choice.
+4. Configure any necessary environment variables.
+5. Run the project locally.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To use the Todo list application, follow these instructions:
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+1. Launch the application on your preferred device.
+2. Write your name and age.
+3. Explore the user interface to create and manage your tasks.
+4. Organize tasks into different lists for better organization and prioritization.
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-* [member 1](https://github.com/person1)
-* [member 2](https://github.com/person1)
+Collaborators:
+- [Marcus](https://github.com/marcusjobb)
+- [Samer](https://github.com/Samer-Ismael)
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-* [junit jupiter 5](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0)
-
-If you followed tutorials, include links to those here as well.
-
+Third-party assets used:
+- [JUnit Jupiter 5](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0)
+- [Mockito Core 5.3.1](https://mvnrepository.com/artifact/org.mockito/mockito-core/5.3.1)
+- [JSON In Java 20230227 2.4.2](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-json/20230227.2.4.2)
+- [MongoDB Driver 4.9.1](https://mvnrepository.com/artifact/org.mongodb/mongodb-driver/4.9.1)
+- [SQLite JDBC 3.42.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.42.0.0)
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [MIT License](https://choosealicense.com/licenses/mit/).
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 
+![todolist-Samer-Ismael.png](Rapport%20och%20diagram%2Ftodolist-Samer-Ismael.png)
 ---
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
