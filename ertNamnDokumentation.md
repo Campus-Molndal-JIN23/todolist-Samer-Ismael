@@ -28,19 +28,19 @@ En bra metod för att hantera mycket data
 #### Diagram.(exempelvis)
 Bifogar en klass diagram 
 ### Jira/Trello/Github Project och projekthantering enligt Scrum/Kanban
-
+Bifogar en bild på detta
 ## Arbetet och dess genomförande
 
 ### Vad som varit svårt
-
+Göra tester på databasen
 ### Beskriv lite olika lösningar du gjort
-
+Valde att spara en användare i databasen som blir uppdaterat när man gör ändringar i programmer
 ### Beskriv något som var besvärligt att få till
 
 ### Beskriv om du fått byta lösning och varför i sådana fall
 
 ## Reflektion & Slutsatser
-
+En väldigt rolig uppgift som gick väldigt bra.
 ### Vad gick bra
 
 ### Vad gick dåligt
@@ -48,5 +48,5 @@ Bifogar en klass diagram
 ### Vad har du lärt dig
 
 ### Vad hade ni gjort annorlunda om ni gjort om projektet
-
+Jag tycker att idean är väldigt bra och hade inte tänkt byta den, men koden såklart kan vara mycket bättre.
 ### Vilka möjligheter ser du med de kunskaper du fått under kursen.
