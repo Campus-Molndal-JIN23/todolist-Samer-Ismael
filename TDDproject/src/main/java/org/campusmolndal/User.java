@@ -56,11 +56,11 @@ public class User {
         sb.append("User: ").append(this.username).append("\n");
         sb.append("Age: ").append(this.age).append("\n");
         sb.append("To-Do Lists:\n");
-        if (toDoList.isEmpty()) System.out.println("You dont have any lists. ");
         for (ToDo toDo : toDoList) {
             sb.append(counter + ". " + toDo.getTitle()).append("\n");
             counter++;
         }
+        if (toDoList.isEmpty()) System.out.println("You dont have any lists. ");
         return sb.toString();
     }
 }
