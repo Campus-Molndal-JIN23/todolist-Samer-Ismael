@@ -34,9 +34,10 @@ Bifogar en bild på detta
 ### Vad som varit svårt
 Göra tester på databasen
 ### Beskriv lite olika lösningar du gjort
-Valde att spara en användare i databasen som blir uppdaterat när man gör ändringar i programmer
+Att göra Scanner som en utility class för att slippa skapa massa Scanner i programmer. 
+Att spara en användare i data basen och uppdatera den i databasen för att det ska bli väldigt enkelt att hitta info i databasen
 ### Beskriv något som var besvärligt att få till
-
+Github Actions var lite bråkig, men det är då man lär sig nya grejer. 
 ### Beskriv om du fått byta lösning och varför i sådana fall
 
 ## Reflektion & Slutsatser
