@@ -6,16 +6,16 @@ import java.util.List;
 public class User {
     private String username;
     private int age;
-    private List<ToDo> toDoList;
+    private final List<ToDo> toDoList;
 
     public User() {
-        this.toDoList = new ArrayList<>();
+        toDoList = new ArrayList<>();
     }
 
     public User(String username, int age) {
         this.username = username;
         this.age = age;
-        this.toDoList = new ArrayList<>();
+        toDoList = new ArrayList<>();
     }
 
     // for updating user
@@ -25,39 +25,40 @@ public class User {
         this.toDoList = toDoList;
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public List<ToDo> getToDoList() {
-        return toDoList;
+        return this.toDoList;
     }
 
     public void addToDoList(ToDo toDo) {
-        toDoList.add(toDo);
+        this.toDoList.add(toDo);
     }
 
     public void removeFromToDoList(ToDo toDo) {
-        toDoList.remove(toDo);
+        this.toDoList.remove(toDo);
     }
 
     @Override
     public String toString() {
         int counter = 0;
         StringBuilder sb = new StringBuilder();
-        sb.append("User: ").append(username).append("\n");
-        sb.append("Age: ").append(age).append("\n");
+        sb.append("User: ").append(this.username).append("\n");
+        sb.append("Age: ").append(this.age).append("\n");
         sb.append("To-Do Lists:\n");
-        for (ToDo toDo : toDoList) {
-            sb.append(counter++ + ". " +toDo.getTitle()).append("\n");
+        for (ToDo toDo : this.toDoList) {
+            sb.append(counter + ". " + toDo.getTitle()).append("\n");
+            counter++;
         }
         return sb.toString();
     }

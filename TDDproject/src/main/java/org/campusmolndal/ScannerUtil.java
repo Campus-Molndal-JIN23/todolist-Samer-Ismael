@@ -8,14 +8,14 @@ public class ScannerUtil {
 
     // Klassen är en Utility-klass och ska inte instansieras, därför är konstruktorn privat.
     private ScannerUtil(Scanner scanner) {
-        this.scanner = scanner;
+        ScannerUtil.scanner = scanner;
     }
 
     public static ScannerUtil getTheInput() {
-            if (theInput == null) {
-                theInput = new ScannerUtil(new Scanner(System.in));
-            }
-            return theInput;
+        if (null == theInput) {
+            ScannerUtil.theInput = new ScannerUtil(new Scanner(System.in));
+        }
+        return ScannerUtil.theInput;
     }
 
     // Metod för att ställa in en annan Scanner
@@ -27,10 +27,10 @@ public class ScannerUtil {
     public int nextInt() {
         while (true) {
             try {
-                return scanner.nextInt();
+                return ScannerUtil.scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter an integer: ");
-                scanner.nextLine();
+                ScannerUtil.scanner.nextLine();
             }
         }
     }
@@ -38,10 +38,10 @@ public class ScannerUtil {
     public double nextDouble() {
         while (true) {
             try {
-                return scanner.nextDouble();
+                return ScannerUtil.scanner.nextDouble();
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a double: ");
-                scanner.nextLine();
+                ScannerUtil.scanner.nextLine();
             }
         }
     }
@@ -49,7 +49,7 @@ public class ScannerUtil {
     public String nextLine() {
         String result;
         do {
-            result = scanner.nextLine();
+            result = ScannerUtil.scanner.nextLine();
             if (result.isEmpty()) {
                 System.out.println("Please enter a non-empty string: ");
             }

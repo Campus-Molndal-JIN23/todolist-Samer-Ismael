@@ -4,13 +4,16 @@ public class DatabseFacade {
 
     private Databse database;
     private String DbName;
-    public DatabseFacade (String name){
-        database = new Databse(name);
+
+    public DatabseFacade(String name) {
+        this.database = new Databse(name);
 
     }
+
     public void closeDatabase() {
-        database.close();
+        this.database.close();
     }
+
     //For Mock testing
     public void setDatabse(Databse database) {
         this.database = database;
@@ -18,21 +21,21 @@ public class DatabseFacade {
 
     //Crud
     public void createUser(User user) {
-        database.createUser(user);
+        this.database.createUser(user);
     }
 
     //cRud
     public User findUserByUsername(String username) {
-        return database.findUserByUsername(username);
+        return this.database.findUserByUsername(username);
     }
 
     //crUd
     public void updateUser(User newUser, String oldName) {
-        database.updateUser(newUser, oldName);
+        this.database.updateUser(newUser, oldName);
     }
 
     //cruD
     public void deleteUser(User user) {
-        database.deleteUser(user);
+        this.database.deleteUser(user);
     }
 }

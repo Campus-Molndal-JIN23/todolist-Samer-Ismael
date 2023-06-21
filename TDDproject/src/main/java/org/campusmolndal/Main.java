@@ -1,9 +1,5 @@
 package org.campusmolndal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2019-2023 Marcus Medina, Campus Mölndal

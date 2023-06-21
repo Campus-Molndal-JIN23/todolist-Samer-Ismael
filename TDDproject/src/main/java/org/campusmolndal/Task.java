@@ -10,7 +10,7 @@ public class Task {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -18,10 +18,10 @@ public class Task {
     }
 
     public boolean isDone() {
-        return isDone;
+        return this.isDone;
     }
 
     public void setIsDone(Boolean done) {
-        isDone = done;
+        this.isDone = done;
     }
 }
