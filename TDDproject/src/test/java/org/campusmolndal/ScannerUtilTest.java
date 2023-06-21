@@ -14,6 +14,7 @@ class ScannerUtilTest {
     private Scanner mockScanner;
     private ScannerUtil scannerUtil;
 
+    @Test
     @BeforeEach
     public void setUp() {
         mockScanner = mock(Scanner.class);
