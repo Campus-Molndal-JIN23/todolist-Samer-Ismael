@@ -1,7 +1,7 @@
 # Samer Ismael
 
 ## Egna reflektioner
-
+En väldigt rolig uppgift som gick väldigt bra.
 ## Projektet
 Todo list 
 ### Beskrivning av projektet
@@ -40,7 +40,7 @@ Valde att spara en användare i databasen som blir uppdaterat när man gör änd
 ### Beskriv om du fått byta lösning och varför i sådana fall
 
 ## Reflektion & Slutsatser
-En väldigt rolig uppgift som gick väldigt bra.
+
 ### Vad gick bra
 
 ### Vad gick dåligt
