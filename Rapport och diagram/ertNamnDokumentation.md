@@ -70,3 +70,4 @@ Att Github Actions underlättar mycket i arbetet när man får det att fungera. 
 Jag tycker att idén är mycket bra och jag skulle inte ändra den, men själva koden kan definitivt förbättras.
 
 ### Vilka möjligheter ser du med de kunskaper du har fått under kursen?
+Jag har lärt mig att skapa tester för API, Database och använda GitHub Actions samt göra komplett från början till slut.
