@@ -39,6 +39,7 @@ public class Menu {
         }
     }
 
+    // This method creates a new user with the given name and age.
     public void createUser(String name) {
         // Create new User
         try {
@@ -51,15 +52,18 @@ public class Menu {
         }
     }
 
+    // This method displays the user's to-do lists.
     public void showToDoLists() {
         System.out.println(user.toString());
     }
 
+    // This method displays the tasks in a specific to-do list.
     public void showTasks(int index) {
         List<ToDo> list = user.getToDoList();
         System.out.println(list.get(index).toString());
     }
 
+    // This method displays the available options for managing to-do lists.
     public int optionsForTodo() {
         System.out.println("1. create new.");
         System.out.println("2. Open.");
@@ -77,6 +81,7 @@ public class Menu {
         return number;
     }
 
+    // This method handles the chosen option for managing to-do lists.
     public void optionHandlerForToDo(int number) {
         try {
             if (1 == number) createNewTodo();
@@ -94,6 +99,7 @@ public class Menu {
         }
     }
 
+    // This method displays the available options for managing tasks in a to-do list.
     public int optionForTasks() {
         System.out.println("1. create new.");
         System.out.println("2. Set as done.");
@@ -111,6 +117,7 @@ public class Menu {
         return number;
     }
 
+    // This method handles the chosen option for managing tasks in a to-do list.
     public void optionHandlerForTasks(int listNumber, int choice) {
         try {
             if (1 == choice) createNewTask(listNumber);
@@ -127,6 +134,10 @@ public class Menu {
     }
 
     //Private methods start here
+
+    // Methods for account handling
+
+    // This method allows the user to access and modify their account settings.
     private void accountSettings() {
         System.out.println("1. Delete account");
         System.out.println("2. Change your name");
@@ -138,6 +149,7 @@ public class Menu {
         if (3 == choice) AccountSettingsListAll();
     }
 
+    // This method lists all users in the database.
     private void AccountSettingsListAll() {
         List<User> users = databse.listAllUsers();
         for (User user1 : users) {
@@ -147,6 +159,7 @@ public class Menu {
         }
     }
 
+    // This method allows the user to change their account name.
     private void accountSettingsChangeName() {
         System.out.println("Enter your new name: ");
         String newName = ScannerUtil.getTheInput().nextLine();
@@ -154,6 +167,7 @@ public class Menu {
         databse.updateUser(user, olName);
     }
 
+    // This method allows the user to delete their account.
     private void accountSettingsDeleteAccount() {
         System.out.println("Are you shore you want to delete it (Y,N)");
         String answer = ScannerUtil.getTheInput().nextLine();
@@ -165,6 +179,9 @@ public class Menu {
         }
     }
 
+    // Methods for task handling
+
+    // This method allows the user to update the name of a specific to-do list.
     private void updateToDo() {
         System.out.println("Enter list ID: ");
         showToDoLists();
@@ -177,6 +194,7 @@ public class Menu {
         System.out.println("Done!");
     }
 
+    // This method allows the user to delete a specific to-do list.
     private void deleteToDo() {
         System.out.println("Enter list ID: ");
         showToDoLists();
@@ -187,6 +205,7 @@ public class Menu {
         System.out.println("Done!");
     }
 
+    // This method allows the user to open a specific to-do list and perform operations on its tasks.
     private void openToDo() {
         System.out.println("Enter list ID: ");
         int listNumber = ScannerUtil.getTheInput().nextInt();
@@ -198,6 +217,7 @@ public class Menu {
         }
     }
 
+    // This method allows the user to create a new to-do list.
     private void createNewTodo() {
         ToDo todo = new ToDo();
         System.out.println("Enter list name: ");
@@ -208,6 +228,9 @@ public class Menu {
         databse.updateUser(user, olName);
     }
 
+    // Methods for task handling
+
+    // This method allows the user to edit a specific task in a to-do list.
     private void editTask(int listNumber) {
         System.out.println("Enter Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
@@ -226,6 +249,7 @@ public class Menu {
         databse.updateUser(user, olName);
     }
 
+    // This method allows the user to delete a specific task from a to-do list.
     private void DeleteTask(int listNumber) {
         System.out.println("Enter Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
@@ -236,6 +260,7 @@ public class Menu {
         databse.updateUser(user, olName);
     }
 
+    // This method allows the user to mark a task as done or not done.
     private void setDoneAndNotDoneTask(int listNumber, int choice) {
         System.out.println("Enter task ID: ");
         int index = ScannerUtil.getTheInput().nextInt();
@@ -249,6 +274,7 @@ public class Menu {
         databse.updateUser(user, olName);
     }
 
+    // This method allows the user to create a new task in a to-do list.
     private void createNewTask(int listNumber) {
         Boolean exit = true;
         do {
