@@ -6,7 +6,7 @@ public class ScannerUtil {
     private static Scanner scanner;
     private static ScannerUtil theInput;
 
-    // Klassen är en Utility-klass och ska inte instansieras, därför är konstruktorn privat.
+    // Klassen är en Utility-klass och ska inte instansieras, därför är konstruktorn private.
     private ScannerUtil(Scanner scanner) {
         ScannerUtil.scanner = scanner;
     }
