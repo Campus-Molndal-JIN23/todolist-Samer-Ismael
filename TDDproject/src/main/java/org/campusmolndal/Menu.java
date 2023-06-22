@@ -119,7 +119,7 @@ public class Menu {
             if (5 == choice) {
                 editTask(listNumber);
             } else {
-                // do nothing
+                //Do nothing
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -190,9 +190,12 @@ public class Menu {
     private void openToDo() {
         System.out.println("Enter list ID: ");
         int listNumber = ScannerUtil.getTheInput().nextInt();
-        showTasks(listNumber);
-        int taskNumber = optionForTasks();
-        optionHandlerForTasks(listNumber, taskNumber);
+        int taskNumber = 0;
+        while (taskNumber != 6) {
+            showTasks(listNumber);
+            taskNumber = optionForTasks();
+            optionHandlerForTasks(listNumber, taskNumber);
+        }
     }
 
     private void createNewTodo() {
