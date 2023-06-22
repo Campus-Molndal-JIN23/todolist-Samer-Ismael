@@ -49,6 +49,6 @@ Third-party assets used:
 
 This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 
-## Diagram
-![todolist-Samer-Ismael.png](Rapport%20och%20diagram%2Ftodolist-Samer-Ismael.png)
+## Diagram!
+[Class_Diagram.png](Rapport%20och%20diagram%2FClass_Diagram.png)
 ---
