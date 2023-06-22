@@ -29,35 +29,34 @@ public class Databse {
     }
 
     public void createUser(User user) {
-        // för att lägga till en User så behöver man loppa igenom todo listan
-        //  och sen för varje lista ska man göra en loop som hämnat alla tasks i den listan.
+        // To add a User, we need to iterate through the to-do list
+        // and for each list, iterate through all the tasks in that list.
         try {
             MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
             List<Document> toDoListsArray = new ArrayList<>();
             for (ToDo toDoList : user.getToDoList()) {
                 List<Document> tasksArray = new ArrayList<>();
                 for (Task task : toDoList.getTasks()) {
-                    // För varje task i en todo lista skapar vi document
+                    // For each task in a to-do list, we create a document
                     Document taskDocument = new Document()
                             .append("description", task.getDescription())
                             .append("isDone", task.isDone());
                     tasksArray.add(taskDocument);
                 }
-                //För varje todo lista i User klassen skapar vi Document
+                // For each to-do list in the User class, we create a Document
                 Document toDoListDocument = new Document()
                         .append("title", toDoList.getTitle())
                         .append("tasks", tasksArray);
 
                 toDoListsArray.add(toDoListDocument);
             }
-            // Nu skapar vi en User Document men de andra två listor i den.
+            // Now we create a User Document with the other two lists inside it.
             Document userDocument = new Document()
                     .append("_id", new ObjectId())
                     .append("username", user.getUsername())
                     .append("age", user.getAge())
                     .append("toDoList", toDoListsArray);
-
-            //in i databasen i 20 minuter på 250 grader.
+            // Insert the userDocument into the database at 250 degrees for 20 minutes.
             collection.insertOne(userDocument);
         } catch (MongoException e) {
             System.out.println(e.getMessage());
@@ -69,32 +68,35 @@ public class Databse {
             MongoCollection<Document> collection = this.database.getCollection(this.userCollection);
             Document query = new Document("username", username);
             Document userDocument = collection.find(query).first();
+
             if (null != userDocument) {
+                // Retrieve the username and age from the userDocument
                 String foundUsername = userDocument.getString("username");
                 int age = userDocument.getInteger("age");
-
                 List<ToDo> toDoList = new ArrayList<>();
                 List<Document> toDoListsArray = (List<Document>) userDocument.get("toDoList");
                 for (Document toDoListDocument : toDoListsArray) {
-                    String title = toDoListDocument.getString("title");
 
+                    // Retrieve the title of the to-do list
+                    String title = toDoListDocument.getString("title");
                     List<Task> tasks = new ArrayList<>();
                     List<Document> tasksArray = (List<Document>) toDoListDocument.get("tasks");
                     for (Document taskDocument : tasksArray) {
+
+                        // Retrieve the description and isDone status of each task
                         String description = taskDocument.getString("description");
                         boolean isDone = taskDocument.getBoolean("isDone");
                         tasks.add(new Task(description, isDone));
                     }
-
-                    toDoList.add(new ToDo(title, tasks));
+                    toDoList.add(new ToDo(title, tasks)); // Create a new ToDo object with the retrieved title and tasks
                 }
-                return new User(foundUsername, age, toDoList);
+                return new User(foundUsername, age, toDoList); // Create a new User object with the retrieved username, age, and to-do list
             } else {
-                return null;
+                return null; // If no userDocument is found, return null
             }
         } catch (MongoException e) {
-            System.out.println(e.getMessage());
-            return null;
+            System.out.println(e.getMessage()); // Print any MongoDB-related exception messages
+            return null; // Return null in case of an exception
         }
     }
 
@@ -117,14 +119,12 @@ public class Databse {
                                 .append("isDone", task.isDone());
                         tasksArray.add(taskDocument);
                     }
-
                     Document toDoListDocument = new Document()
                             .append("title", toDoList.getTitle())
                             .append("tasks", tasksArray);
 
                     toDoListsArray.add(toDoListDocument);
                 }
-
                 Document userDocument = new Document()
                         .append("username", newUser.getUsername())
                         .append("age", newUser.getAge())
