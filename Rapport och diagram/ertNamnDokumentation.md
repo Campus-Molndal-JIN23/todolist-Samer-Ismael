@@ -9,7 +9,7 @@ Todo-lista som kan ta användare som har Todo listor och varje lista har taskes 
 
 ### Beskrivning av projektet
 En todo-lista för att skapa händelser åt en användare.
-Kan ta fler användare och todo listor för användaren som innehåller taskes
+Kan ta fler användare och todo listor för användaren som innehåller tasks.
 
 ### Vad du har gjort
 Jag har skapat en användarklass som har en lista med todos, där varje todo i sin tur har en lista med tasks.
@@ -18,13 +18,15 @@ I databasen registreras enbart en användare.
 Alla ändringar som görs i programmet uppdateras direkt i användaren, vilket underlättar sparning och sökning av information i databasen.
 
 ## Planering
-Planeringen har utförts i Asana. Jag började med att skriva klasserna som behövs för att göra ett program som gör som uppgiften säger. Sen kom några andra ider som hamnade i backlogen för att tanken var att göra ett program som funkar först och sen lägga till mer funktioner.
+Planeringen har utförts i Asana. Jag började med att skriva klasserna som behövs för att göra ett program som gör som uppgiften säger. 
+Sen kom några andra ider som hamnade i backlogen för att tanken var att göra ett program som funkar först och sen lägga till mer funktioner.
 Sen började jag ta ett uppgift i taget från backlogen och skapa klasser som returnerar null för att kunna ska tester och sen fylla på metoderna
 
 ### Lösningsförslag innan uppgiften påbörjas
 Att skapa en SQL:ite database som har 3 tabeller. User Todo Task.
 Att skapa en MongoDB med två document en som sparar användare och en för alla todos och tasks.
-Att skapa MongoDB med ett document som innehåller User och inne i User så kan man ha listorna för todos. Varje gång man gör en ändring så uppdateras hela User.
+Att skapa MongoDB med ett document som innehåller User och inne i User så kan man ha listorna för todos. 
+Varje gång man gör en ändring så uppdateras hela User.
 
 #### Skisser (exempelvis)
 För projektplanering och -organisation använde jag mig av Asana.
@@ -38,6 +40,12 @@ Man göt CRUDL för User och så uppdaterar man den när man vill.
 En Scanner Utility klass för att inte behöva använda Scanner många gånger i appen och då blir det svårt att köra tester.
 En menu klass som kör hela programmet med så med så tydliga metoder det går,
 eftersom det ska vara mycket kod i menyn och man måste kunna förstår koden där
+
+Jag tänkte att Todo listan är en privat och olika användare ska inte kunna se andras tasks. 
+Det var därför jag valde att lista och visa Todos och tasks passerad på användaren som har loggat in. 
+Inte att man kan se vad som helst i databasen.
+Jag har lagt en funktion som heter account settings som inte ska vara med i verkligheten om jag ska skapa en sån app, 
+men den finns nu för att läraren ska kunna testa och se vad som finns i databasen
 
 #### Pseudokod (exempelvis)
 Skapa ScannerUtil.
