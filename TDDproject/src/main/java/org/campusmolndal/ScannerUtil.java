@@ -6,7 +6,7 @@ public class ScannerUtil {
     private static Scanner scanner;
     private static ScannerUtil theInput;
 
-    // Klassen är en Utility-klass och ska inte instansieras, därför är konstruktorn private.
+    // The class is a Utility class and should not be instantiated, therefore the constructor is private.
     private ScannerUtil(Scanner scanner) {
         ScannerUtil.scanner = scanner;
     }
@@ -18,8 +18,8 @@ public class ScannerUtil {
         return ScannerUtil.theInput;
     }
 
-    // Metod för att ställa in en annan Scanner
-    // ONLY för användning vid testning, används inte i programkoden!
+    // Method to set another Scanner
+    // ONLY for use in testing, not used in program code!
     static void setScanner(Scanner scanner) {
         ScannerUtil.scanner = scanner;
     }

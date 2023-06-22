@@ -12,15 +12,15 @@ public class Menu {
         databse = new DatabseFacade("ToDo");
         start();
         while (true) {
-            //Jag börjar med att visa lista med ToDos man har,
-            // sen kallar jag option hanterare och passerar jag de olika options man har som argument i metoden
+            //I start by showing the list of ToDos you have,
+            // then I call option handler and pass the various options you have as arguments in the method
             showToDoLists();
             optionHandlerForToDo(optionsForTodo());
         }
     }
 
     public void start() {
-        // Fråga vem man är och se om man är gammal eller ny användare
+        // Ask who you are and see if you are an old or new user
         try {
             System.out.println("Welcome, Enter your name or 'Exit' if you want to exit: ");
             String name = ScannerUtil.getTheInput().nextLine();
@@ -40,7 +40,7 @@ public class Menu {
     }
 
     public void createUser(String name) {
-        // Skapa ny användare om man är ny
+        // Create new User
         try {
             System.out.println("How old are you? ");
             int age = ScannerUtil.getTheInput().nextInt();
@@ -126,7 +126,7 @@ public class Menu {
         }
     }
 
-    //Här börjar alla privata metoder.
+    //Private methods start here
     private void accountSettings() {
         System.out.println("1. Delete account");
         System.out.println("2. Change your name");

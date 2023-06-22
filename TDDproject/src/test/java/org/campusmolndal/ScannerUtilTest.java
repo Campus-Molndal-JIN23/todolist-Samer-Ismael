@@ -27,6 +27,7 @@ class ScannerUtilTest {
         when(mockScanner.nextInt()).thenThrow(new NoSuchElementException()).thenReturn(5);
 
         assertEquals(5, scannerUtil.nextInt());
+        // verify is to ensure the test runs 2 times
         verify(mockScanner, times(2)).nextInt();
     }
 

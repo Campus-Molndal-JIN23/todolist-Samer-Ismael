@@ -21,26 +21,27 @@ public class DatabseFacade {
         this.database = database;
     }
 
-    //Crud
+    //Crudl
     public void createUser(User user) {
         this.database.createUser(user);
     }
 
-    //cRud
+    //cRudl
     public User findUserByUsername(String username) {
         return this.database.findUserByUsername(username);
     }
 
-    //crUd
+    //crUdl
     public void updateUser(User newUser, String oldName) {
         this.database.updateUser(newUser, oldName);
     }
 
-    //cruD
+    //cruDl
     public void deleteUser(User user) {
         this.database.deleteUser(user);
     }
 
+    //crudL
     public List<User> listAllUsers (){
         List<User> users = this.database.listAllUsers();
         return users;

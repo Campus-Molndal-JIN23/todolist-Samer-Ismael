@@ -24,6 +24,7 @@ class DatabseFacadeTest {
     public void testCreateUser() {
         User user = new User();
         databaseFacade.createUser(user);
+        // Verifies that the 'createUser' method is called on 'mocked Database' with the 'user' argument.
         verify(mockedDatabase).createUser(user);
     }
 
