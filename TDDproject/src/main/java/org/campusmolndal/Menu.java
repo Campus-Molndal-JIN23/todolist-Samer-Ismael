@@ -197,7 +197,7 @@ public class Menu {
 
     private void createNewTodo() {
         ToDo todo = new ToDo();
-        System.out.println("Enter list ID: ");
+        System.out.println("Enter list name: ");
         String name = ScannerUtil.getTheInput().nextLine();
         todo.setTitle(name);
         user.addToDoList(todo);

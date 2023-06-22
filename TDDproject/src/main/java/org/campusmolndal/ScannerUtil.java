@@ -54,7 +54,6 @@ public class ScannerUtil {
                 System.out.println("Please enter a non-empty string: ");
             }
         } while (result.isEmpty());
-
         return result;
     }
 }
