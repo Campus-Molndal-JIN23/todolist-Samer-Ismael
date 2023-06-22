@@ -5,7 +5,9 @@
 
 ## Description
 
-This project is a Todo list application that helps users manage tasks and events. It was developed to improve my programming skills and practice different concepts. By building this project, I aimed to create an effective solution for organizing and managing tasks. Throughout the process, I learned valuable lessons and gained experience in developing a functional and user-friendly application. I also learned about using GitHub Actions for automating tasks and improving the development workflow.
+This project is a Todo list application that helps users manage tasks and events. It was developed to improve my programming skills and practice different concepts. By building this project, I aimed to create an effective solution for organizing and managing tasks.
+The application will help the user to create one or more to-do lists, for example, a Home list, a School list, and a Gym list and it will organize the tasks the user wants to do in every list.
+Throughout the process, I learned valuable lessons and gained experience in developing a functional and user-friendly application. I also learned about using GitHub Actions for automating tasks and improving the development workflow.
 
 ## Table of Contents 
 
