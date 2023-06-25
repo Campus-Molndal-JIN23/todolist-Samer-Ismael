@@ -1,6 +1,6 @@
 package org.campusmolndal;
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,15 +19,15 @@ class ToDoTest {
     public void testGetTitle() {
         String title = "lsta";
         todo.setTitle(title);
-        Assert.assertEquals(title, todo.getTitle());
+        assertEquals(title, todo.getTitle());
     }
 
     @Test
     public void testAddTask() {
         Task task = new Task("test", false);
         todo.addTask(task);
-        Assert.assertEquals(1, todo.getTasks().size());
-        Assert.assertEquals(task, todo.getTasks().get(0));
+        assertEquals(1, todo.getTasks().size());
+        assertEquals(task, todo.getTasks().get(0));
     }
 
     @Test
@@ -36,7 +36,7 @@ class ToDoTest {
         todo.addTask(task);
         Task updatedTask = new Task("Updated task", true);
         todo.updateTask(0, updatedTask);
-        Assert.assertEquals(updatedTask, todo.getTasks().get(0));
+        assertEquals(updatedTask, todo.getTasks().get(0));
     }
 
     @Test
@@ -44,7 +44,7 @@ class ToDoTest {
         Task task = new Task("test", false);
         todo.addTask(task);
         todo.setDoneOrNotDone(0, true);
-        Assert.assertTrue(todo.getTasks().get(0).isDone());
+        assertTrue(todo.getTasks().get(0).isDone());
     }
 
     @Test
@@ -52,7 +52,7 @@ class ToDoTest {
         Task task = new Task("test", false);
         todo.addTask(task);
         todo.deleteTask(0);
-        Assert.assertEquals(0, todo.getTasks().size());
+        assertEquals(0, todo.getTasks().size());
     }
 
     @Test

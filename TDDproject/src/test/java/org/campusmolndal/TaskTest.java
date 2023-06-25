@@ -1,6 +1,5 @@
 package org.campusmolndal;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,24 +19,24 @@ class TaskTest {
     @Test
     public void testGetDescription() {
         String description = "test";
-        Assert.assertEquals(description, task.getDescription());
+        assertEquals(description, task.getDescription());
     }
 
     @Test
     public void testSetDescription() {
         String description = "test";
         task.setDescription(description);
-        Assert.assertEquals(description, task.getDescription());
+        assertEquals(description, task.getDescription());
     }
 
     @Test
     public void testIsDone() {
-        Assert.assertFalse(task.isDone());
+        assertFalse(task.isDone());
     }
 
     @Test
     public void testSetIsDone() {
         task.setIsDone(true);
-        Assert.assertTrue(task.isDone());
+        assertTrue(task.isDone());
     }
 }
